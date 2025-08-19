@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mawa Bro's Indian Food Truck - Menu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #8B4513 0%, #CD853F  100%);
+            min-height: 100vh;
+            color: #2C1810;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #F5F5DC;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: #F5F5DC;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(245, 245, 220, 0.1) 10px,
+                rgba(245, 245, 220, 0.1) 20px
+            );
+        }
+
+        .logo {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 100px;
+            height: 100px;
+            background: #F5F5DC;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+            padding: 5px;
+        }
+
+        /* Optional gradient background - remove this if your logo has its own background */
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 30%, #FFD700, #FFA500, #FF8C00);
+            border-radius: 50%;
+            transform: scale(0.9);
+            z-index: 1;
+        }
+
+        .logo-icon img {
+            position: relative;
+            z-index: 2;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: white;
+            padding: 2px;
+        }
+
+        .truck-icon {
+            display: inline-block;
+            margin: 0 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .menu-content {
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: #F5F5DC;
+            padding: 15px 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .menu-items {
+            padding: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid #E5E5E5;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #FFF8DC;
+            border-radius: 8px;
+            margin: 0 -10px;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2C1810;
+            flex: 1;
+            text-transform: capitalize;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: #8B4513;
+            font-size: 1.2rem;
+            margin-left: 15px;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #2C1810, #4A2C17);
+            color: #F5F5DC;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .contact-info {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #CD853F;
+        }
+
+        .address {
+            font-style: italic;
+            line-height: 1.6;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .logo-icon {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .logo-icon img {
+                width: 65px;
+                height: 65px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-header {
+                font-size: 1.2rem;
+                padding: 12px 15px;
+            }
+            
+            .menu-items {
+                padding: 15px;
+            }
+            
+            .menu-item {
+                padding: 12px 0;
+            }
+            
+            .item-name {
+                font-size: 1rem;
+            }
+            
+            .item-price {
+                font-size: 1.1rem;
+            }
+        }
+
+        .decorative-border {
+            height: 5px;
+            background: repeating-linear-gradient(
+                90deg,
+                #8B4513,
+                #8B4513 10px,
+                #CD853F 10px,
+                #CD853F 20px
+            );
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decorative-border"></div>
+        
+        <div class="header">
+            <div class="logo">
+                <!-- Replace 'images/logo.png' with the path to your logo file -->
+                <div class="logo-icon">
+                    <img src="images/download.png" alt="Mawa Bro's Logo">
+                </div>
+                <h1>
+                    MAWA BRO'S
+                    <span class="truck-icon">🚚</span>
+                </h1>
+                <p>Indian Food Truck</p>
+            </div>
+        </div>
+
+        <div class="menu-content">
+            <!-- IDLY Section -->
+            <div class="section">
+                <div class="section-header">IDLY</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Plain Idly</span>
+                        <span class="item-price">$6.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Karam Idly</span>
+                        <span class="item-price">$6.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Sambar Idly</span>
+                        <span class="item-price">$6.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Tawa Idli</span>
+                        <span class="item-price">$6.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DOSA Section -->
+            <div class="section">
+                <div class="section-header">DOSA</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Plain Dosa</span>
+                        <span class="item-price">$7.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Onion Dosa</span>
+                        <span class="item-price">$7.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Masala Dosa</span>
+                        <span class="item-price">$8.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Ghee Karam Dosa</span>
+                        <span class="item-price">$8.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Schezwan Dosa</span>
+                        <span class="item-price">$8.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Egg Dosa</span>
+                        <span class="item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Dosa with Chicken</span>
+                        <span class="item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Dosa</span>
+                        <span class="item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Cheese Dosa</span>
+                        <span class="item-price">$9.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PARATHA/POORI Section -->
+            <div class="section">
+                <div class="section-header">PARATHA/POORI</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Paratha Veg Curry</span>
+                        <span class="item-price">$8.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Poori Veg Curry</span>
+                        <span class="item-price">$8.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paratha Chicken Curry</span>
+                        <span class="item-price">$9.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Poori Chicken Curry</span>
+                        <span class="item-price">$9.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- APPETIZERS Section -->
+            <div class="section">
+                <div class="section-header">APPETIZERS</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Paneer 65</span>
+                        <span class="item-price">$13.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Veg Manchurian</span>
+                        <span class="item-price">$11.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chilli Chicken</span>
+                        <span class="item-price">$12.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Manchurian</span>
+                        <span class="item-price">$12.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Curry Leaf Chicken</span>
+                        <span class="item-price">$12.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Pakora</span>
+                        <span class="item-price">$12.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SNACKS Section -->
+            <div class="section">
+                <div class="section-header">SNACKS</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Mysor Bonda</span>
+                        <span class="item-price">$7.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Punugulu</span>
+                        <span class="item-price">$7.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mirchi Bajji</span>
+                        <span class="item-price">$7.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Cut Mirchi</span>
+                        <span class="item-price">$7.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Eggbonda</span>
+                        <span class="item-price">$8.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Onion Pakoda</span>
+                        <span class="item-price">$7.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Punjabi Samosa</span>
+                        <span class="item-price">$3.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Mini Samosa</span>
+                        <span class="item-price">$3.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INDO-CHINESE Section -->
+            <div class="section">
+                <div class="section-header">INDO-CHINESE</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Veg Noodles</span>
+                        <span class="item-price">$10.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Veg Fried Rice</span>
+                        <span class="item-price">$10.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Egg Noodles</span>
+                        <span class="item-price">$11.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Egg Fried Rice</span>
+                        <span class="item-price">$11.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Double Egg Noodles</span>
+                        <span class="item-price">$12.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Double Egg Fried Rice</span>
+                        <span class="item-price">$12.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Noodles</span>
+                        <span class="item-price">$12.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Fried Rice</span>
+                        <span class="item-price">$12.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Double Egg Chicken Fried Rice / Noodles</span>
+                        <span class="item-price">$12.49</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PULAVS Section -->
+            <div class="section">
+                <div class="section-header">PULAVS</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Paneer 65 Pulav</span>
+                        <span class="item-price">$13.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken 65 Pulav</span>
+                        <span class="item-price">$13.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chilli Chicken Pulav</span>
+                        <span class="item-price">$13.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chicken Curry Pulav</span>
+                        <span class="item-price">$13.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Pachi Mirchi Kodi Pulav</span>
+                        <span class="item-price">$13.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BIRYANI Section -->
+            <div class="section">
+                <div class="section-header">BIRYANI</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Hyderabadi Chicken Dum Biryani</span>
+                        <span class="item-price">$12.99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Vijayawada Chicken Biryani</span>
+                        <span class="item-price">$12.99</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DRINKS Section -->
+            <div class="section">
+                <div class="section-header">DRINKS</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Mango Lassi</span>
+                        <span class="item-price">$5.49</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Chikoo Shake</span>
+                        <span class="item-price">$5.49</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHAI Section -->
+            <div class="section">
+                <div class="section-header">CHAI</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Small</span>
+                        <span class="item-price">$1.29</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Big</span>
+                        <span class="item-price">$2.49</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESSERT Section -->
+            <div class="section">
+                <div class="section-header">DESSERT</div>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <span class="item-name">Gulab Jamun</span>
+                        <span class="item-price">$2.99</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h2>We Accept Catering Orders</h2>
+            
+            <div class="contact-info">
+                <strong>Phone:</strong>
+                346-297-1141
+            </div>
+            
+            <div class="contact-info">
+                <strong>Instagram:</strong>
+                @MAWA_BROS_INDIAN_FOODTRUCK
+            </div>
+            
+            <div class="address">
+                <strong>Location:</strong><br>
+                2747 Bay Area Blvd, Houston, Texas, 77058<br>
+                (Chevron Gas Station opposite to University of Houston - Clear Lake)
+            </div>
+        </div>
+
+        <div class="decorative-border"></div>
+    </div>
+</body>
+</html>
